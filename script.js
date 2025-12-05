@@ -94,7 +94,7 @@ let currentFilters = {
 
 // --- API INTEGRATION ---
 // --- API INTEGRATION ---
-const API_URL = 'https://damp-alena-codmm-12fb310b.koyeb.app/api';
+const API_URL = '/api';
 const loadingOverlay = document.getElementById('loading-overlay');
 
 function showLoading() {
@@ -930,4 +930,3 @@ function generateExcel() {
 
 // Start App
 init();
-
