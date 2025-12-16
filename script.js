@@ -113,7 +113,11 @@ let currentFilters = {
 };
 
 // --- API INTEGRATION ---
-const API_URL = 'http://localhost:5001/api'; // Hardcoded for local dev robustness
+// --- API INTEGRATION ---
+// Smart API URL: Use localhost:5001 if on Live Server (Port 5500), otherwise use relative path (Production)
+const API_URL = (window.location.port === '5500') ? 'http://localhost:5001/api' : '/api';
+console.log('API Endpoint:', API_URL);
+
 const loadingOverlay = document.getElementById('loading-overlay');
 
 function showLoading() {
