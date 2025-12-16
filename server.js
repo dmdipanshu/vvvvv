@@ -17,7 +17,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 
 const app = express();
-const PORT = 5001; // Force 5001, ignore env to fix EADDRINUSE 27017 error
+const PORT = process.env.PORT || 5001; // Env Port (Koyeb) or 5001 (Local)
 
 // --- SECURITY MIDDLEWARE ---
 // --- DEBUG LOGGING ---
