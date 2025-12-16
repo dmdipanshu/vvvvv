@@ -35,9 +35,12 @@ app.use(helmet({
 app.use(mongoSanitize()); // Prevent NoSQL Injection
 app.use(xss()); // Prevent XSS
 
+// --- CONFIGURATION ---
+app.set('trust proxy', 1); // Trust first proxy (Required for Koyeb/Render/Heroku)
+
 // Rate Limiting
 const limiter = rateLimit({
-    windowMs: 10 * 60 * 1000, // 10 minutes
+    windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100 // limit each IP to 100 requests per windowMs
 });
 app.use(limiter);
@@ -45,8 +48,7 @@ app.use(limiter);
 // Middleware
 app.use(compression()); // Compress all responses
 app.use(cors()); // Note: ideally restrict origin in production
-app.use(express.json({ limit: '10kb' })); // Body limit
-app.use(express.json({ limit: '10kb' })); // Body limit
+app.use(express.json({ limit: '10mb' })); // Increased limit to prevent 413 errors on sync
 // Static middleware moved to bottom
 
 // Database Connection
